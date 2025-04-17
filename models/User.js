@@ -11,15 +11,15 @@ const UserSchema = new mongoose.Schema({
   profilePic: { type: String, default: "" },
   coverPic: { type: String, default: "" },
   isDeleted: { type: Boolean, default: false },
-  isVerified: { type: Boolean, default: false },  // تأكيد الحساب
-  otp: { type: String },  // كود OTP
-  otpExpires: { type: Date } // صلاحية الـ OTP
+  isVerified: { type: Boolean, default: false },  
+  otp: { type: String },  
+  otpExpires: { type: Date } 
 });
 
 // Hash password before saving
 UserSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-  this.password = await bcrypt.hash(this.password, 10);
+  //this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 
